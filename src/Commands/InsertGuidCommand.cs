@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using Community.VisualStudio.Toolkit;
+﻿using Community.VisualStudio.Toolkit;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
+using System;
+using System.Linq;
 using Task = System.Threading.Tasks.Task;
 
 namespace InsertGuid
@@ -21,10 +21,10 @@ namespace InsertGuid
 
             using (ITextEdit edit = docView.TextBuffer.CreateEdit())
             {
-                var guid = Guid.NewGuid().ToString();
-
                 foreach (SnapshotSpan selection in selections.Reverse())
                 {
+                    var guid = Guid.NewGuid().ToString().ToUpper();
+
                     edit.Replace(selection, guid);
                 }
 
